@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net"
+	"strings"
 )
 
 var (
@@ -23,6 +24,23 @@ type IPGeo struct {
 	City     string
 
 	ISP string
+}
+
+func (geo *IPGeo) String() string {
+	var ls []string
+	if geo.Country != "" {
+		ls = append(ls, geo.Country)
+	}
+	if geo.Province != "" {
+		ls = append(ls, geo.Province)
+	}
+	if geo.City != "" {
+		ls = append(ls, geo.City)
+	}
+	if geo.ISP != "" {
+		ls = append(ls, geo.ISP)
+	}
+	return strings.Join(ls, "，")
 }
 
 func GetGeo(ipStr string) (*IPGeo, error) {

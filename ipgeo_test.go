@@ -1,6 +1,7 @@
 package ipipgo
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -19,6 +20,10 @@ func TestGetGeo(t *testing.T) {
 		t.FailNow()
 	}
 	if geo.ISP == "" {
+		t.FailNow()
+	}
+	s := fmt.Sprintf("%v", geo)
+	if s == "" {
 		t.FailNow()
 	}
 }
